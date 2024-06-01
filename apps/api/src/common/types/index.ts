@@ -1,6 +1,6 @@
-export type Role = 'admin'
+export type Role = 'admin';
 
 export type GetUserType = {
-  uid: string
-  roles: Role[]
-}
+  uid: string;
+  roles: Role[];
+};

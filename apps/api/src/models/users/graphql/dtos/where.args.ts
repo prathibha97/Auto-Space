@@ -22,7 +22,6 @@ export class UserWhereInputStrict
       >
     >
 {
-
   uid: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
