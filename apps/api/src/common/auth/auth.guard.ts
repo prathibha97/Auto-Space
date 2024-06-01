@@ -4,11 +4,11 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { Reflector } from '@nestjs/core';
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
-import { Reflector } from '@nestjs/core';
-import { Role } from 'src/common/types';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { Role } from 'src/common/types';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -36,10 +36,23 @@ export class AuthGuard implements CanActivate {
     }
 
     try {
-      const user = await this.jwtService.verify(token);
-      req.user = user;
+      const payload = await this.jwtService.verify(token);
+      const uid = payload.uid;
+      if (!uid) {
+        throw new UnauthorizedException(
+          'Invalid token. Missing uid in the token.',
+        );
+      }
+      const user = await this.prisma.user.findUnique({ where: { uid } });
+      if (!user) {
+        throw new UnauthorizedException(
+          'Invalid token. User not found in the database.',
+        );
+      }
+      req.user = payload;
     } catch (err) {
       console.error('Token validation error:', err);
+      throw err;
     }
 
     if (!req.user) {
@@ -51,13 +64,12 @@ export class AuthGuard implements CanActivate {
     req: any,
     context: ExecutionContext,
   ): Promise<boolean> {
-    const userRoles = await this.getUserRoles(req.user.uid);
-    req.user.roles = userRoles;
-
     const requiredRoles = this.getMetadata<Role[]>('roles', context);
     if (!requiredRoles || requiredRoles.length === 0) {
       return true;
     }
+    const userRoles = await this.getUserRoles(req.user.uid);
+    req.user.roles = userRoles;
 
     return requiredRoles.some((role) => userRoles.includes(role));
   }
