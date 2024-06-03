@@ -3,17 +3,18 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcryptjs';
+import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
-import { v4 as uuid } from 'uuid';
 import {
   LoginInput,
+  LoginOutput,
   RegisterWithCredentialsInput,
   RegisterWithProviderInput,
 } from './dtos/create-user.input';
-import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args';
 import { UpdateUserInput } from './dtos/update-user.input';
+import * as bcrypt from 'bcryptjs';
+import { v4 as uuid } from 'uuid';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class UsersService {
@@ -21,11 +22,11 @@ export class UsersService {
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
   ) {}
-  registerWithProvider({ name, type, uid, image }: RegisterWithProviderInput) {
+  registerWithProvider({ image, name, uid, type }: RegisterWithProviderInput) {
     return this.prisma.user.create({
       data: {
-        name,
         uid,
+        name,
         image,
         AuthProvider: {
           create: {
@@ -42,26 +43,24 @@ export class UsersService {
     password,
     image,
   }: RegisterWithCredentialsInput) {
-    const exisistingUser = await this.prisma.credentials.findUnique({
-      where: {
-        email,
-      },
+    const existingUser = await this.prisma.credentials.findUnique({
+      where: { email },
     });
 
-    if (exisistingUser) {
-      throw new BadRequestException('User already exists with this email');
+    if (existingUser) {
+      throw new BadRequestException('User already exists with this email.');
     }
 
-    // hash password
+    // Hash the password
     const salt = bcrypt.genSaltSync();
-    const passwordHash = await bcrypt.hash(password, salt);
+    const passwordHash = bcrypt.hashSync(password, salt);
 
     const uid = uuid();
 
     return this.prisma.user.create({
       data: {
-        name,
         uid,
+        name,
         image,
         Credentials: {
           create: {
@@ -81,12 +80,10 @@ export class UsersService {
     });
   }
 
-  async login({ email, password }: LoginInput) {
+  async login({ email, password }: LoginInput): Promise<LoginOutput> {
     const user = await this.prisma.user.findFirst({
       where: {
-        Credentials: {
-          email,
-        },
+        Credentials: { email },
       },
       include: {
         Credentials: true,
@@ -94,15 +91,16 @@ export class UsersService {
     });
 
     if (!user) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Invalid email or password.');
     }
 
     const isPasswordValid = bcrypt.compareSync(
       password,
       user.Credentials.passwordHash,
     );
+
     if (!isPasswordValid) {
-      throw new UnauthorizedException('Invalid email or password');
+      throw new UnauthorizedException('Invalid email or password.');
     }
 
     const jwtToken = this.jwtService.sign(
@@ -111,7 +109,8 @@ export class UsersService {
         algorithm: 'HS256',
       },
     );
-    return { token: jwtToken };
+
+    return { token: jwtToken, user };
   }
 
   findAll(args: FindManyUserArgs) {
