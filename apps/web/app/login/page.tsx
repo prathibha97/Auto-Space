@@ -6,7 +6,7 @@ interface pageProps {}
 
 const page: FC<pageProps> = ({}) => {
   return (
-    <AuthLayout title='Login'>
+    <AuthLayout title="Login">
       <LoginForm />
     </AuthLayout>
   );

@@ -3,7 +3,7 @@ import { Role } from '@autospace/util/types';
 import { useFormRegister } from '@autospace/forms/src/register';
 import { useMutation } from '@apollo/client';
 import { RegisterWithCredentialsDocument } from '@autospace/network/src/gql/generated';
-import { Form ,Button,HtmlInput,HtmlLabel} from '../atoms';
+import { Form, Button, HtmlInput, HtmlLabel } from '../atoms';
 import { signIn } from 'next-auth/react';
 
 import Link from 'next/link';
