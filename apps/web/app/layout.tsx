@@ -1,7 +1,8 @@
 import { ApolloProvider } from '@autospace/network/src/config/apollo';
+import '@autospace/ui/app/globals.css';
+import { SessionProvider } from '@autospace/ui/components/molecules';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import '@autospace/ui/app/globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <ApolloProvider>
-        <body className={inter.className}>{children}</body>
-      </ApolloProvider>
+      <SessionProvider>
+        <ApolloProvider>
+          <body className={inter.className}>{children}</body>
+        </ApolloProvider>
+      </SessionProvider>
     </html>
   );
 }
