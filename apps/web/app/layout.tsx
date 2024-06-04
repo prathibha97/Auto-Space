@@ -22,9 +22,9 @@ export default function RootLayout({
       <SessionProvider>
         <ApolloProvider>
           <body className={inter.className}>
-            <Header menuItems={[]}/>
+            <Header menuItems={[]} />
             {children}
-            </body>
+          </body>
         </ApolloProvider>
       </SessionProvider>
     </html>
