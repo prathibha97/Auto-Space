@@ -11,10 +11,15 @@
   "dependencies": {
     "@autospace/forms": "*",
     "@autospace/util": "*",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@headlessui/react": "^2.0.4",
+    "@mui/material": "^5.15.19",
+    "mapbox-gl": "^3.4.0",
     "next": "14.2.3",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-map-gl": "^7.1.7"
   },
   "devDependencies": {
     "@types/node": "^20",

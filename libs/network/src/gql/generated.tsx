@@ -1,33 +1,20 @@
 import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/core';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]?: Maybe<T[SubKey]>;
-};
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & {
-  [SubKey in K]: Maybe<T[SubKey]>;
-};
-export type MakeEmpty<
-  T extends { [key: string]: unknown },
-  K extends keyof T,
-> = { [_ in K]?: never };
-export type Incremental<T> =
-  | T
-  | {
-      [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never;
-    };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = { [_ in K]?: never };
+export type Incremental<T> = T | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: { input: string; output: string };
-  String: { input: string; output: string };
-  Boolean: { input: boolean; output: boolean };
-  Int: { input: number; output: number };
-  Float: { input: number; output: number };
+  ID: { input: string; output: string; }
+  String: { input: string; output: string; }
+  Boolean: { input: boolean; output: boolean; }
+  Int: { input: number; output: number; }
+  Float: { input: number; output: number; }
   /** A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format. */
-  DateTime: { input: any; output: any };
+  DateTime: { input: any; output: any; }
 };
 
 export type Address = {
@@ -35,10 +22,10 @@ export type Address = {
   address: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
   garage?: Maybe<Garage>;
-  garageId?: Maybe<Scalars['Int']['output']>;
-  id: Scalars['Int']['output'];
-  lat: Scalars['Int']['output'];
-  lng: Scalars['Int']['output'];
+  garageId?: Maybe<Scalars['Float']['output']>;
+  id: Scalars['Float']['output'];
+  lat: Scalars['Float']['output'];
+  lng: Scalars['Float']['output'];
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -65,7 +52,7 @@ export enum AddressScalarFieldEnum {
   Id = 'id',
   Lat = 'lat',
   Lng = 'lng',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type AddressWhereInput = {
@@ -83,7 +70,7 @@ export type AddressWhereInput = {
 };
 
 export type AddressWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type Admin = {
@@ -93,7 +80,7 @@ export type Admin = {
   updatedAt: Scalars['DateTime']['output'];
   user?: Maybe<User>;
   verifications: Array<Verification>;
-  verificationsCount: Scalars['Int']['output'];
+  verificationsCount: Scalars['Float']['output'];
 };
 
 export type AdminOrderByWithRelationInput = {
@@ -112,7 +99,7 @@ export type AdminRelationFilter = {
 export enum AdminScalarFieldEnum {
   CreatedAt = 'createdAt',
   Uid = 'uid',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type AdminWhereInput = {
@@ -132,7 +119,7 @@ export type AdminWhereUniqueInput = {
 
 export type AggregateCountOutput = {
   __typename?: 'AggregateCountOutput';
-  count: Scalars['Int']['output'];
+  count: Scalars['Float']['output'];
 };
 
 export type AuthProvider = {
@@ -143,7 +130,7 @@ export type AuthProvider = {
 
 export enum AuthProviderType {
   Credentials = 'CREDENTIALS',
-  Google = 'GOOGLE',
+  Google = 'GOOGLE'
 }
 
 export type Booking = {
@@ -153,15 +140,15 @@ export type Booking = {
   customer: Customer;
   customerId: Scalars['String']['output'];
   endTime: Scalars['DateTime']['output'];
-  id: Scalars['Int']['output'];
+  id: Scalars['Float']['output'];
   passcode?: Maybe<Scalars['String']['output']>;
   phoneNumber?: Maybe<Scalars['String']['output']>;
-  pricePerHour?: Maybe<Scalars['Int']['output']>;
+  pricePerHour?: Maybe<Scalars['Float']['output']>;
   slot: Slot;
-  slotId: Scalars['Int']['output'];
+  slotId: Scalars['Float']['output'];
   startTime: Scalars['DateTime']['output'];
   status: BookingStatus;
-  totalPrice?: Maybe<Scalars['Int']['output']>;
+  totalPrice?: Maybe<Scalars['Float']['output']>;
   updatedAt: Scalars['DateTime']['output'];
   valetAssignment?: Maybe<ValetAssignment>;
   vehicleNumber: Scalars['String']['output'];
@@ -215,7 +202,7 @@ export enum BookingScalarFieldEnum {
   Status = 'status',
   TotalPrice = 'totalPrice',
   UpdatedAt = 'updatedAt',
-  VehicleNumber = 'vehicleNumber',
+  VehicleNumber = 'vehicleNumber'
 }
 
 export enum BookingStatus {
@@ -225,13 +212,13 @@ export enum BookingStatus {
   ValetAssignedForCheckIn = 'VALET_ASSIGNED_FOR_CHECK_IN',
   ValetAssignedForCheckOut = 'VALET_ASSIGNED_FOR_CHECK_OUT',
   ValetPickedUp = 'VALET_PICKED_UP',
-  ValetReturned = 'VALET_RETURNED',
+  ValetReturned = 'VALET_RETURNED'
 }
 
 export type BookingTimeline = {
   __typename?: 'BookingTimeline';
-  bookingId: Scalars['Int']['output'];
-  id: Scalars['Int']['output'];
+  bookingId: Scalars['Float']['output'];
+  id: Scalars['Float']['output'];
   managerId?: Maybe<Scalars['String']['output']>;
   status: BookingStatus;
   timestamp: Scalars['DateTime']['output'];
@@ -266,7 +253,7 @@ export enum BookingTimelineScalarFieldEnum {
   ManagerId = 'managerId',
   Status = 'status',
   Timestamp = 'timestamp',
-  ValetId = 'valetId',
+  ValetId = 'valetId'
 }
 
 export type BookingTimelineWhereInput = {
@@ -285,7 +272,7 @@ export type BookingTimelineWhereInput = {
 };
 
 export type BookingTimelineWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type BookingWhereInput = {
@@ -312,7 +299,7 @@ export type BookingWhereInput = {
 };
 
 export type BookingWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type BoolFilter = {
@@ -326,7 +313,7 @@ export type Company = {
   description?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
   garages: Array<Garage>;
-  id: Scalars['Int']['output'];
+  id: Scalars['Float']['output'];
   managers: Array<Manager>;
   updatedAt: Scalars['DateTime']['output'];
 };
@@ -352,7 +339,7 @@ export enum CompanyScalarFieldEnum {
   Description = 'description',
   DisplayName = 'displayName',
   Id = 'id',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type CompanyWhereInput = {
@@ -370,20 +357,20 @@ export type CompanyWhereInput = {
 };
 
 export type CompanyWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type CreateAddressInput = {
   address: Scalars['String']['input'];
-  garageId?: InputMaybe<Scalars['Int']['input']>;
-  lat: Scalars['Int']['input'];
-  lng: Scalars['Int']['input'];
+  garageId?: InputMaybe<Scalars['Float']['input']>;
+  lat: Scalars['Float']['input'];
+  lng: Scalars['Float']['input'];
 };
 
 export type CreateAddressInputWithoutGarageId = {
   address: Scalars['String']['input'];
-  lat: Scalars['Int']['input'];
-  lng: Scalars['Int']['input'];
+  lat: Scalars['Float']['input'];
+  lng: Scalars['Float']['input'];
 };
 
 export type CreateAdminInput = {
@@ -393,7 +380,7 @@ export type CreateAdminInput = {
 export type CreateBookingInput = {
   customerId: Scalars['String']['input'];
   endTime: Scalars['DateTime']['input'];
-  garageId: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
   pricePerHour?: InputMaybe<Scalars['Float']['input']>;
   startTime: Scalars['DateTime']['input'];
@@ -404,7 +391,7 @@ export type CreateBookingInput = {
 };
 
 export type CreateBookingTimelineInput = {
-  bookingId: Scalars['Int']['input'];
+  bookingId: Scalars['Float']['input'];
   status: BookingStatus;
 };
 
@@ -436,49 +423,49 @@ export type CreateManagerInput = {
 export type CreateReviewInput = {
   comment?: InputMaybe<Scalars['String']['input']>;
   customerId: Scalars['String']['input'];
-  garageId: Scalars['Int']['input'];
-  rating: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
+  rating: Scalars['Float']['input'];
 };
 
 export type CreateSlotInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
-  garageId: Scalars['Int']['input'];
-  height?: InputMaybe<Scalars['Int']['input']>;
-  length?: InputMaybe<Scalars['Int']['input']>;
-  pricePerHour: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
+  height?: InputMaybe<Scalars['Float']['input']>;
+  length?: InputMaybe<Scalars['Float']['input']>;
+  pricePerHour: Scalars['Float']['input'];
   type: SlotType;
-  width?: InputMaybe<Scalars['Int']['input']>;
+  width?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type CreateSlotInputWithoutGarageId = {
-  count: Scalars['Int']['input'];
+  count: Scalars['Float']['input'];
   displayName?: InputMaybe<Scalars['String']['input']>;
-  height?: InputMaybe<Scalars['Int']['input']>;
-  length?: InputMaybe<Scalars['Int']['input']>;
-  pricePerHour: Scalars['Int']['input'];
+  height?: InputMaybe<Scalars['Float']['input']>;
+  length?: InputMaybe<Scalars['Float']['input']>;
+  pricePerHour: Scalars['Float']['input'];
   type: SlotType;
-  width?: InputMaybe<Scalars['Int']['input']>;
+  width?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type CreateValetAssignmentInput = {
-  bookingId: Scalars['Int']['input'];
-  pickupLat: Scalars['Int']['input'];
-  pickupLng: Scalars['Int']['input'];
+  bookingId: Scalars['Float']['input'];
+  pickupLat: Scalars['Float']['input'];
+  pickupLng: Scalars['Float']['input'];
   pickupValetId?: InputMaybe<Scalars['String']['input']>;
-  returnLat?: InputMaybe<Scalars['Int']['input']>;
-  returnLng?: InputMaybe<Scalars['Int']['input']>;
+  returnLat?: InputMaybe<Scalars['Float']['input']>;
+  returnLng?: InputMaybe<Scalars['Float']['input']>;
   returnValetId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type CreateValetAssignmentInputWithoutBookingId = {
-  pickupLat: Scalars['Int']['input'];
-  pickupLng: Scalars['Int']['input'];
-  returnLat?: InputMaybe<Scalars['Int']['input']>;
-  returnLng?: InputMaybe<Scalars['Int']['input']>;
+  pickupLat: Scalars['Float']['input'];
+  pickupLng: Scalars['Float']['input'];
+  returnLat?: InputMaybe<Scalars['Float']['input']>;
+  returnLng?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type CreateValetInput = {
-  companyId?: InputMaybe<Scalars['Int']['input']>;
+  companyId?: InputMaybe<Scalars['Float']['input']>;
   displayName: Scalars['String']['input'];
   image?: InputMaybe<Scalars['String']['input']>;
   licenceID: Scalars['String']['input'];
@@ -486,7 +473,7 @@ export type CreateValetInput = {
 };
 
 export type CreateVerificationInput = {
-  garageId: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
   verified: Scalars['Boolean']['input'];
 };
 
@@ -519,7 +506,7 @@ export enum CustomerScalarFieldEnum {
   CreatedAt = 'createdAt',
   DisplayName = 'displayName',
   Uid = 'uid',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type CustomerWhereInput = {
@@ -569,12 +556,12 @@ export type EnumSlotTypeFilter = {
 };
 
 export type FloatFilter = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
-  not?: InputMaybe<Scalars['Int']['input']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  not?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type Garage = {
@@ -582,17 +569,18 @@ export type Garage = {
   address?: Maybe<Address>;
   availableSlots: Array<MinimalSlotGroupBy>;
   company: Company;
-  companyId: Scalars['Int']['output'];
+  companyId: Scalars['Float']['output'];
   createdAt: Scalars['DateTime']['output'];
   description?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
-  id: Scalars['Int']['output'];
+  id: Scalars['Float']['output'];
   images: Array<Scalars['String']['output']>;
   slotCounts: Array<SlotTypeCount>;
   slots: Array<Slot>;
   updatedAt: Scalars['DateTime']['output'];
   verification?: Maybe<Verification>;
 };
+
 
 export type GarageAvailableSlotsArgs = {
   dateFilter: DateFilterInput;
@@ -601,8 +589,8 @@ export type GarageAvailableSlotsArgs = {
 
 export type GarageFilter = {
   orderBy?: InputMaybe<Array<GarageOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<GarageWhereInput>;
 };
 
@@ -643,7 +631,7 @@ export enum GarageScalarFieldEnum {
   DisplayName = 'displayName',
   Id = 'id',
   Images = 'images',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type GarageWhereInput = {
@@ -665,15 +653,15 @@ export type GarageWhereInput = {
 };
 
 export type GarageWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type IntFilter = {
-  equals?: InputMaybe<Scalars['Int']['input']>;
-  gt?: InputMaybe<Scalars['Int']['input']>;
-  gte?: InputMaybe<Scalars['Int']['input']>;
-  lt?: InputMaybe<Scalars['Int']['input']>;
-  lte?: InputMaybe<Scalars['Int']['input']>;
+  equals?: InputMaybe<Scalars['Float']['input']>;
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  lte?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type LocationFilterInput = {
@@ -697,7 +685,7 @@ export type LoginOutput = {
 export type Manager = {
   __typename?: 'Manager';
   company?: Maybe<Company>;
-  companyId: Scalars['Int']['output'];
+  companyId: Scalars['Float']['output'];
   createdAt: Scalars['DateTime']['output'];
   displayName?: Maybe<Scalars['String']['output']>;
   uid: Scalars['String']['output'];
@@ -735,7 +723,7 @@ export enum ManagerScalarFieldEnum {
   CreatedAt = 'createdAt',
   DisplayName = 'displayName',
   Uid = 'uid',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type ManagerWhereInput = {
@@ -758,8 +746,8 @@ export type ManagerWhereUniqueInput = {
 
 export type MinimalSlotGroupBy = {
   __typename?: 'MinimalSlotGroupBy';
-  count: Scalars['Int']['output'];
-  pricePerHour: Scalars['Int']['output'];
+  count: Scalars['Float']['output'];
+  pricePerHour: Scalars['Float']['output'];
   type: SlotType;
 };
 
@@ -813,187 +801,233 @@ export type Mutation = {
   updateVerification: Verification;
 };
 
+
 export type MutationAssignValetArgs = {
-  bookingId: Scalars['Int']['input'];
+  bookingId: Scalars['Float']['input'];
   status: Scalars['String']['input'];
 };
+
 
 export type MutationCreateAddressArgs = {
   createAddressInput: CreateAddressInput;
 };
 
+
 export type MutationCreateAdminArgs = {
   createAdminInput: CreateAdminInput;
 };
+
 
 export type MutationCreateBookingArgs = {
   createBookingInput: CreateBookingInput;
 };
 
+
 export type MutationCreateBookingTimelineArgs = {
   createBookingTimelineInput: CreateBookingTimelineInput;
 };
+
 
 export type MutationCreateCompanyArgs = {
   createCompanyInput: CreateCompanyInput;
 };
 
+
 export type MutationCreateCustomerArgs = {
   createCustomerInput: CreateCustomerInput;
 };
+
 
 export type MutationCreateGarageArgs = {
   createGarageInput: CreateGarageInput;
 };
 
+
 export type MutationCreateManagerArgs = {
   createManagerInput: CreateManagerInput;
 };
 
+
 export type MutationCreateManySlotsArgs = {
-  count: Scalars['Int']['input'];
+  count: Scalars['Float']['input'];
   createSlotInput: CreateSlotInput;
 };
+
 
 export type MutationCreateReviewArgs = {
   createReviewInput: CreateReviewInput;
 };
 
+
 export type MutationCreateSlotArgs = {
   createSlotInput: CreateSlotInput;
 };
+
 
 export type MutationCreateValetArgs = {
   createValetInput: CreateValetInput;
 };
 
+
 export type MutationCreateValetAssignmentArgs = {
   createValetAssignmentInput: CreateValetAssignmentInput;
 };
+
 
 export type MutationCreateVerificationArgs = {
   createVerificationInput: CreateVerificationInput;
 };
 
+
 export type MutationLoginArgs = {
   loginInput: LoginInput;
 };
+
 
 export type MutationRegisterWithCredentialsArgs = {
   registerWithCredentialsInput: RegisterWithCredentialsInput;
 };
 
+
 export type MutationRegisterWithProviderArgs = {
   registerWithProviderInput: RegisterWithProviderInput;
 };
+
 
 export type MutationRemoveAddressArgs = {
   where: AddressWhereUniqueInput;
 };
 
+
 export type MutationRemoveAdminArgs = {
   where: AdminWhereUniqueInput;
 };
+
 
 export type MutationRemoveBookingArgs = {
   where: BookingWhereUniqueInput;
 };
 
+
 export type MutationRemoveBookingTimelineArgs = {
   where: BookingTimelineWhereUniqueInput;
 };
+
 
 export type MutationRemoveCompanyArgs = {
   where: CompanyWhereUniqueInput;
 };
 
+
 export type MutationRemoveCustomerArgs = {
   where: CustomerWhereUniqueInput;
 };
+
 
 export type MutationRemoveGarageArgs = {
   where: GarageWhereUniqueInput;
 };
 
+
 export type MutationRemoveManagerArgs = {
   where: ManagerWhereUniqueInput;
 };
+
 
 export type MutationRemoveReviewArgs = {
   where: ReviewWhereUniqueInput;
 };
 
+
 export type MutationRemoveSlotArgs = {
   where: SlotWhereUniqueInput;
 };
+
 
 export type MutationRemoveUserArgs = {
   where: UserWhereUniqueInput;
 };
 
+
 export type MutationRemoveValetArgs = {
   where: ValetWhereUniqueInput;
 };
+
 
 export type MutationRemoveValetAssignmentArgs = {
   where: ValetAssignmentWhereUniqueInput;
 };
 
+
 export type MutationRemoveVerificationArgs = {
   where: VerificationWhereUniqueInput;
 };
+
 
 export type MutationUpdateAddressArgs = {
   updateAddressInput: UpdateAddressInput;
 };
 
+
 export type MutationUpdateAdminArgs = {
   updateAdminInput: UpdateAdminInput;
 };
+
 
 export type MutationUpdateBookingArgs = {
   updateBookingInput: UpdateBookingInput;
 };
 
+
 export type MutationUpdateBookingTimelineArgs = {
   updateBookingTimelineInput: UpdateBookingTimelineInput;
 };
+
 
 export type MutationUpdateCompanyArgs = {
   updateCompanyInput: UpdateCompanyInput;
 };
 
+
 export type MutationUpdateCustomerArgs = {
   updateCustomerInput: UpdateCustomerInput;
 };
+
 
 export type MutationUpdateGarageArgs = {
   updateGarageInput: UpdateGarageInput;
 };
 
+
 export type MutationUpdateManagerArgs = {
   updateManagerInput: UpdateManagerInput;
 };
+
 
 export type MutationUpdateReviewArgs = {
   updateReviewInput: UpdateReviewInput;
 };
 
+
 export type MutationUpdateSlotArgs = {
   updateSlotInput: UpdateSlotInput;
 };
+
 
 export type MutationUpdateUserArgs = {
   updateUserInput: UpdateUserInput;
 };
 
+
 export type MutationUpdateValetArgs = {
   updateValetInput: UpdateValetInput;
 };
 
+
 export type MutationUpdateValetAssignmentArgs = {
   updateValetAssignmentInput: UpdateValetAssignmentInput;
 };
+
 
 export type MutationUpdateVerificationArgs = {
   updateVerificationInput: UpdateVerificationInput;
@@ -1006,7 +1040,7 @@ export type Query = {
   admin: Admin;
   adminMe: Admin;
   admins: Array<Admin>;
-  adminsCount: Scalars['Int']['output'];
+  adminsCount: Scalars['Float']['output'];
   booking: Booking;
   bookingTimeline: BookingTimeline;
   bookingTimelines: Array<BookingTimeline>;
@@ -1018,7 +1052,7 @@ export type Query = {
   companies: Array<Company>;
   company: Company;
   companyValets: Array<Valet>;
-  companyValetsTotal: Scalars['Int']['output'];
+  companyValetsTotal: Scalars['Float']['output'];
   customer: Customer;
   customers: Array<Customer>;
   garage: Garage;
@@ -1039,188 +1073,216 @@ export type Query = {
   valetAssignment: ValetAssignment;
   valetAssignments: Array<ValetAssignment>;
   valetDrops: Array<Booking>;
-  valetDropsTotal: Scalars['Int']['output'];
+  valetDropsTotal: Scalars['Float']['output'];
   valetMe?: Maybe<Valet>;
   valetPickups: Array<Booking>;
-  valetPickupsTotal: Scalars['Int']['output'];
+  valetPickupsTotal: Scalars['Float']['output'];
   valets: Array<Valet>;
   verification: Verification;
   verifications: Array<Verification>;
   whoami: User;
 };
 
+
 export type QueryAddressArgs = {
   where: AddressWhereUniqueInput;
 };
+
 
 export type QueryAddressesArgs = {
   cursor?: InputMaybe<AddressWhereUniqueInput>;
   distinct?: InputMaybe<Array<AddressScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AddressOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<AddressWhereInput>;
 };
+
 
 export type QueryAdminArgs = {
   where: AdminWhereUniqueInput;
 };
 
+
 export type QueryAdminsArgs = {
   cursor?: InputMaybe<AdminWhereUniqueInput>;
   distinct?: InputMaybe<Array<AdminScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<AdminOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<AdminWhereInput>;
 };
+
 
 export type QueryAdminsCountArgs = {
   where?: InputMaybe<AdminWhereInput>;
 };
 
+
 export type QueryBookingArgs = {
   where: BookingWhereUniqueInput;
 };
+
 
 export type QueryBookingTimelineArgs = {
   where: BookingTimelineWhereUniqueInput;
 };
 
+
 export type QueryBookingTimelinesArgs = {
   cursor?: InputMaybe<BookingTimelineWhereUniqueInput>;
   distinct?: InputMaybe<Array<BookingTimelineScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<BookingTimelineOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<BookingTimelineWhereInput>;
 };
+
 
 export type QueryBookingsArgs = {
   cursor?: InputMaybe<BookingWhereUniqueInput>;
   distinct?: InputMaybe<Array<BookingScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<BookingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<BookingWhereInput>;
 };
+
 
 export type QueryBookingsCountArgs = {
   where?: InputMaybe<BookingWhereInput>;
 };
 
+
 export type QueryBookingsForCustomerArgs = {
   cursor?: InputMaybe<BookingWhereUniqueInput>;
   distinct?: InputMaybe<Array<BookingScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<BookingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<BookingWhereInput>;
 };
+
 
 export type QueryBookingsForGarageArgs = {
   cursor?: InputMaybe<BookingWhereUniqueInput>;
   distinct?: InputMaybe<Array<BookingScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<BookingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<BookingWhereInput>;
 };
+
 
 export type QueryBookingsForValetArgs = {
   cursor?: InputMaybe<BookingWhereUniqueInput>;
   distinct?: InputMaybe<Array<BookingScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<BookingOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<BookingWhereInput>;
 };
+
 
 export type QueryCompaniesArgs = {
   cursor?: InputMaybe<CompanyWhereUniqueInput>;
   distinct?: InputMaybe<Array<CompanyScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<CompanyOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<CompanyWhereInput>;
 };
+
 
 export type QueryCompanyArgs = {
   where: CompanyWhereUniqueInput;
 };
 
+
 export type QueryCompanyValetsArgs = {
   cursor?: InputMaybe<ValetWhereUniqueInput>;
   distinct?: InputMaybe<Array<ValetScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ValetOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<ValetWhereInput>;
 };
+
 
 export type QueryCompanyValetsTotalArgs = {
   where?: InputMaybe<ValetWhereInput>;
 };
 
+
 export type QueryCustomerArgs = {
   where: CustomerWhereUniqueInput;
 };
+
 
 export type QueryCustomersArgs = {
   cursor?: InputMaybe<CustomerWhereUniqueInput>;
   distinct?: InputMaybe<Array<CustomerScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<CustomerOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<CustomerWhereInput>;
 };
+
 
 export type QueryGarageArgs = {
   where: GarageWhereUniqueInput;
 };
 
+
 export type QueryGaragesArgs = {
   cursor?: InputMaybe<GarageWhereUniqueInput>;
   distinct?: InputMaybe<Array<GarageScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<GarageOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<GarageWhereInput>;
 };
+
 
 export type QueryGaragesCountArgs = {
   where?: InputMaybe<GarageWhereInput>;
 };
 
+
 export type QueryGetAuthProviderArgs = {
   uid: Scalars['String']['input'];
 };
+
 
 export type QueryManagerArgs = {
   where: ManagerWhereUniqueInput;
 };
 
+
 export type QueryManagersArgs = {
   cursor?: InputMaybe<ManagerWhereUniqueInput>;
   distinct?: InputMaybe<Array<ManagerScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ManagerOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<ManagerWhereInput>;
 };
+
 
 export type QueryReviewArgs = {
   where: ReviewWhereUniqueInput;
 };
 
+
 export type QueryReviewsArgs = {
   cursor?: InputMaybe<ReviewWhereUniqueInput>;
   distinct?: InputMaybe<Array<ReviewScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ReviewOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<ReviewWhereInput>;
 };
+
 
 export type QuerySearchGaragesArgs = {
   dateFilter: DateFilterInput;
@@ -1229,84 +1291,96 @@ export type QuerySearchGaragesArgs = {
   slotsFilter?: InputMaybe<SlotWhereInput>;
 };
 
+
 export type QuerySlotArgs = {
   where: SlotWhereUniqueInput;
 };
+
 
 export type QuerySlotsArgs = {
   cursor?: InputMaybe<SlotWhereUniqueInput>;
   distinct?: InputMaybe<Array<SlotScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<SlotOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<SlotWhereInput>;
 };
+
 
 export type QueryUserArgs = {
   where: UserWhereUniqueInput;
 };
 
+
 export type QueryUsersArgs = {
   cursor?: InputMaybe<UserWhereUniqueInput>;
   distinct?: InputMaybe<Array<UserScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<UserOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<UserWhereInput>;
 };
+
 
 export type QueryValetArgs = {
   where: ValetWhereUniqueInput;
 };
 
+
 export type QueryValetAssignmentArgs = {
   where: ValetAssignmentWhereUniqueInput;
 };
+
 
 export type QueryValetAssignmentsArgs = {
   cursor?: InputMaybe<ValetAssignmentWhereUniqueInput>;
   distinct?: InputMaybe<Array<ValetAssignmentScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ValetAssignmentOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<ValetAssignmentWhereInput>;
 };
 
+
 export type QueryValetDropsArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
 };
 
+
 export type QueryValetPickupsArgs = {
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
 };
+
 
 export type QueryValetsArgs = {
   cursor?: InputMaybe<ValetWhereUniqueInput>;
   distinct?: InputMaybe<Array<ValetScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<ValetOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<ValetWhereInput>;
 };
+
 
 export type QueryVerificationArgs = {
   where: VerificationWhereUniqueInput;
 };
 
+
 export type QueryVerificationsArgs = {
   cursor?: InputMaybe<VerificationWhereUniqueInput>;
   distinct?: InputMaybe<Array<VerificationScalarFieldEnum>>;
   orderBy?: InputMaybe<Array<VerificationOrderByWithRelationInput>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  take?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Float']['input']>;
+  take?: InputMaybe<Scalars['Float']['input']>;
   where?: InputMaybe<VerificationWhereInput>;
 };
 
 export enum QueryMode {
   Default = 'default',
-  Insensitive = 'insensitive',
+  Insensitive = 'insensitive'
 }
 
 export type RegisterWithCredentialsInput = {
@@ -1325,7 +1399,7 @@ export type RegisterWithProviderInput = {
 
 export type ReturnCount = {
   __typename?: 'ReturnCount';
-  count: Scalars['Int']['output'];
+  count: Scalars['Float']['output'];
 };
 
 export type Review = {
@@ -1333,9 +1407,9 @@ export type Review = {
   comment?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   customerId: Scalars['String']['output'];
-  garageId: Scalars['Int']['output'];
-  id: Scalars['Int']['output'];
-  rating: Scalars['Int']['output'];
+  garageId: Scalars['Float']['output'];
+  id: Scalars['Float']['output'];
+  rating: Scalars['Float']['output'];
   updatedAt: Scalars['DateTime']['output'];
 };
 
@@ -1368,7 +1442,7 @@ export enum ReviewScalarFieldEnum {
   GarageId = 'garageId',
   Id = 'id',
   Rating = 'rating',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type ReviewWhereInput = {
@@ -1387,7 +1461,7 @@ export type ReviewWhereInput = {
 };
 
 export type ReviewWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export type Slot = {
@@ -1396,14 +1470,14 @@ export type Slot = {
   createdAt: Scalars['DateTime']['output'];
   displayName?: Maybe<Scalars['String']['output']>;
   garage: Garage;
-  garageId: Scalars['Int']['output'];
-  height?: Maybe<Scalars['Int']['output']>;
-  id: Scalars['Int']['output'];
-  length?: Maybe<Scalars['Int']['output']>;
-  pricePerHour: Scalars['Int']['output'];
+  garageId: Scalars['Float']['output'];
+  height?: Maybe<Scalars['Float']['output']>;
+  id: Scalars['Float']['output'];
+  length?: Maybe<Scalars['Float']['output']>;
+  pricePerHour: Scalars['Float']['output'];
   type: SlotType;
   updatedAt: Scalars['DateTime']['output'];
-  width?: Maybe<Scalars['Int']['output']>;
+  width?: Maybe<Scalars['Float']['output']>;
 };
 
 export type SlotListRelationFilter = {
@@ -1446,19 +1520,19 @@ export enum SlotScalarFieldEnum {
   PricePerHour = 'pricePerHour',
   Type = 'type',
   UpdatedAt = 'updatedAt',
-  Width = 'width',
+  Width = 'width'
 }
 
 export enum SlotType {
   Bicycle = 'BICYCLE',
   Bike = 'BIKE',
   Car = 'CAR',
-  Heavy = 'HEAVY',
+  Heavy = 'HEAVY'
 }
 
 export type SlotTypeCount = {
   __typename?: 'SlotTypeCount';
-  count?: Maybe<Scalars['Int']['output']>;
+  count?: Maybe<Scalars['Float']['output']>;
   type: SlotType;
 };
 
@@ -1481,12 +1555,12 @@ export type SlotWhereInput = {
 };
 
 export type SlotWhereUniqueInput = {
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
 };
 
 export enum SortOrder {
   Asc = 'asc',
-  Desc = 'desc',
+  Desc = 'desc'
 }
 
 export type StringFilter = {
@@ -1514,10 +1588,10 @@ export type StringListFilter = {
 
 export type UpdateAddressInput = {
   address?: InputMaybe<Scalars['String']['input']>;
-  garageId?: InputMaybe<Scalars['Int']['input']>;
-  id: Scalars['Int']['input'];
-  lat?: InputMaybe<Scalars['Int']['input']>;
-  lng?: InputMaybe<Scalars['Int']['input']>;
+  garageId?: InputMaybe<Scalars['Float']['input']>;
+  id: Scalars['Float']['input'];
+  lat?: InputMaybe<Scalars['Float']['input']>;
+  lng?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type UpdateAdminInput = {
@@ -1527,8 +1601,8 @@ export type UpdateAdminInput = {
 export type UpdateBookingInput = {
   customerId?: InputMaybe<Scalars['String']['input']>;
   endTime?: InputMaybe<Scalars['DateTime']['input']>;
-  garageId?: InputMaybe<Scalars['Int']['input']>;
-  id: Scalars['Int']['input'];
+  garageId?: InputMaybe<Scalars['Float']['input']>;
+  id: Scalars['Float']['input'];
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
   pricePerHour?: InputMaybe<Scalars['Float']['input']>;
   startTime?: InputMaybe<Scalars['DateTime']['input']>;
@@ -1539,15 +1613,15 @@ export type UpdateBookingInput = {
 };
 
 export type UpdateBookingTimelineInput = {
-  bookingId?: InputMaybe<Scalars['Int']['input']>;
-  id: Scalars['Int']['input'];
+  bookingId?: InputMaybe<Scalars['Float']['input']>;
+  id: Scalars['Float']['input'];
   status?: InputMaybe<BookingStatus>;
 };
 
 export type UpdateCompanyInput = {
   description?: InputMaybe<Scalars['String']['input']>;
   displayName?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
   managerId?: InputMaybe<Scalars['String']['input']>;
   managerName?: InputMaybe<Scalars['String']['input']>;
 };
@@ -1562,7 +1636,7 @@ export type UpdateGarageInput = {
   Slots?: InputMaybe<Array<CreateSlotInputWithoutGarageId>>;
   description?: InputMaybe<Scalars['String']['input']>;
   displayName?: InputMaybe<Scalars['String']['input']>;
-  id: Scalars['Int']['input'];
+  id: Scalars['Float']['input'];
   images?: InputMaybe<Array<Scalars['String']['input']>>;
 };
 
@@ -1574,20 +1648,20 @@ export type UpdateManagerInput = {
 export type UpdateReviewInput = {
   comment?: InputMaybe<Scalars['String']['input']>;
   customerId?: InputMaybe<Scalars['String']['input']>;
-  garageId?: InputMaybe<Scalars['Int']['input']>;
-  id: Scalars['Int']['input'];
-  rating?: InputMaybe<Scalars['Int']['input']>;
+  garageId?: InputMaybe<Scalars['Float']['input']>;
+  id: Scalars['Float']['input'];
+  rating?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type UpdateSlotInput = {
   displayName?: InputMaybe<Scalars['String']['input']>;
-  garageId?: InputMaybe<Scalars['Int']['input']>;
-  height?: InputMaybe<Scalars['Int']['input']>;
-  id: Scalars['Int']['input'];
-  length?: InputMaybe<Scalars['Int']['input']>;
-  pricePerHour?: InputMaybe<Scalars['Int']['input']>;
+  garageId?: InputMaybe<Scalars['Float']['input']>;
+  height?: InputMaybe<Scalars['Float']['input']>;
+  id: Scalars['Float']['input'];
+  length?: InputMaybe<Scalars['Float']['input']>;
+  pricePerHour?: InputMaybe<Scalars['Float']['input']>;
   type?: InputMaybe<SlotType>;
-  width?: InputMaybe<Scalars['Int']['input']>;
+  width?: InputMaybe<Scalars['Float']['input']>;
 };
 
 export type UpdateUserInput = {
@@ -1595,17 +1669,17 @@ export type UpdateUserInput = {
 };
 
 export type UpdateValetAssignmentInput = {
-  bookingId: Scalars['Int']['input'];
-  pickupLat?: InputMaybe<Scalars['Int']['input']>;
-  pickupLng?: InputMaybe<Scalars['Int']['input']>;
+  bookingId: Scalars['Float']['input'];
+  pickupLat?: InputMaybe<Scalars['Float']['input']>;
+  pickupLng?: InputMaybe<Scalars['Float']['input']>;
   pickupValetId?: InputMaybe<Scalars['String']['input']>;
-  returnLat?: InputMaybe<Scalars['Int']['input']>;
-  returnLng?: InputMaybe<Scalars['Int']['input']>;
+  returnLat?: InputMaybe<Scalars['Float']['input']>;
+  returnLng?: InputMaybe<Scalars['Float']['input']>;
   returnValetId?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type UpdateValetInput = {
-  companyId?: InputMaybe<Scalars['Int']['input']>;
+  companyId?: InputMaybe<Scalars['Float']['input']>;
   displayName?: InputMaybe<Scalars['String']['input']>;
   image?: InputMaybe<Scalars['String']['input']>;
   licenceID?: InputMaybe<Scalars['String']['input']>;
@@ -1613,7 +1687,7 @@ export type UpdateValetInput = {
 };
 
 export type UpdateVerificationInput = {
-  garageId: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
   verified?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
@@ -1650,7 +1724,7 @@ export enum UserScalarFieldEnum {
   Image = 'image',
   Name = 'name',
   Uid = 'uid',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type UserWhereInput = {
@@ -1672,7 +1746,7 @@ export type UserWhereUniqueInput = {
 
 export type Valet = {
   __typename?: 'Valet';
-  companyId?: Maybe<Scalars['Int']['output']>;
+  companyId?: Maybe<Scalars['Float']['output']>;
   createdAt: Scalars['DateTime']['output'];
   displayName: Scalars['String']['output'];
   image?: Maybe<Scalars['String']['output']>;
@@ -1683,14 +1757,14 @@ export type Valet = {
 
 export type ValetAssignment = {
   __typename?: 'ValetAssignment';
-  bookingId: Scalars['Int']['output'];
+  bookingId: Scalars['Float']['output'];
   createdAt: Scalars['DateTime']['output'];
-  pickupLat: Scalars['Int']['output'];
-  pickupLng: Scalars['Int']['output'];
+  pickupLat: Scalars['Float']['output'];
+  pickupLng: Scalars['Float']['output'];
   pickupValet?: Maybe<Valet>;
   pickupValetId?: Maybe<Scalars['String']['output']>;
-  returnLat?: Maybe<Scalars['Int']['output']>;
-  returnLng?: Maybe<Scalars['Int']['output']>;
+  returnLat?: Maybe<Scalars['Float']['output']>;
+  returnLng?: Maybe<Scalars['Float']['output']>;
   returnValet?: Maybe<Valet>;
   returnValetId?: Maybe<Scalars['String']['output']>;
   updatedAt: Scalars['DateTime']['output'];
@@ -1735,7 +1809,7 @@ export enum ValetAssignmentScalarFieldEnum {
   ReturnLat = 'returnLat',
   ReturnLng = 'returnLng',
   ReturnValetId = 'returnValetId',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type ValetAssignmentWhereInput = {
@@ -1757,7 +1831,7 @@ export type ValetAssignmentWhereInput = {
 };
 
 export type ValetAssignmentWhereUniqueInput = {
-  bookingId: Scalars['Int']['input'];
+  bookingId: Scalars['Float']['input'];
 };
 
 export type ValetListRelationFilter = {
@@ -1797,7 +1871,7 @@ export enum ValetScalarFieldEnum {
   Image = 'image',
   LicenceId = 'licenceID',
   Uid = 'uid',
-  UpdatedAt = 'updatedAt',
+  UpdatedAt = 'updatedAt'
 }
 
 export type ValetWhereInput = {
@@ -1826,7 +1900,7 @@ export type Verification = {
   __typename?: 'Verification';
   adminId: Scalars['String']['output'];
   createdAt: Scalars['DateTime']['output'];
-  garageId: Scalars['Int']['output'];
+  garageId: Scalars['Float']['output'];
   updatedAt: Scalars['DateTime']['output'];
   verified: Scalars['Boolean']['output'];
 };
@@ -1861,7 +1935,7 @@ export enum VerificationScalarFieldEnum {
   CreatedAt = 'createdAt',
   GarageId = 'garageId',
   UpdatedAt = 'updatedAt',
-  Verified = 'verified',
+  Verified = 'verified'
 }
 
 export type VerificationWhereInput = {
@@ -1878,300 +1952,61 @@ export type VerificationWhereInput = {
 };
 
 export type VerificationWhereUniqueInput = {
-  garageId: Scalars['Int']['input'];
+  garageId: Scalars['Float']['input'];
 };
 
 export type RegisterWithCredentialsMutationVariables = Exact<{
   registerWithCredentialsInput: RegisterWithCredentialsInput;
 }>;
 
-export type RegisterWithCredentialsMutation = {
-  __typename?: 'Mutation';
-  registerWithCredentials: {
-    __typename?: 'User';
-    createdAt: any;
-    name?: string | null;
-    uid: string;
-    image?: string | null;
-    updatedAt: any;
-  };
-};
+
+export type RegisterWithCredentialsMutation = { __typename?: 'Mutation', registerWithCredentials: { __typename?: 'User', createdAt: any, name?: string | null, uid: string, image?: string | null, updatedAt: any } };
 
 export type LoginMutationVariables = Exact<{
   loginInput: LoginInput;
 }>;
 
-export type LoginMutation = {
-  __typename?: 'Mutation';
-  login: {
-    __typename?: 'LoginOutput';
-    token: string;
-    user: {
-      __typename?: 'User';
-      uid: string;
-      name?: string | null;
-      image?: string | null;
-    };
-  };
-};
+
+export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginOutput', token: string, user: { __typename?: 'User', uid: string, name?: string | null, image?: string | null } } };
 
 export type GetAuthProviderQueryVariables = Exact<{
   uid: Scalars['String']['input'];
 }>;
 
-export type GetAuthProviderQuery = {
-  __typename?: 'Query';
-  getAuthProvider?: {
-    __typename?: 'AuthProvider';
-    type: AuthProviderType;
-    uid: string;
-  } | null;
-};
+
+export type GetAuthProviderQuery = { __typename?: 'Query', getAuthProvider?: { __typename?: 'AuthProvider', type: AuthProviderType, uid: string } | null };
 
 export type RegisterWithProviderMutationVariables = Exact<{
   registerWithProviderInput: RegisterWithProviderInput;
 }>;
 
-export type RegisterWithProviderMutation = {
-  __typename?: 'Mutation';
-  registerWithProvider: { __typename?: 'User'; uid: string };
-};
+
+export type RegisterWithProviderMutation = { __typename?: 'Mutation', registerWithProvider: { __typename?: 'User', uid: string } };
+
+export type SearchGaragesQueryVariables = Exact<{
+  dateFilter: DateFilterInput;
+  locationFilter: LocationFilterInput;
+  slotsFilter?: InputMaybe<SlotWhereInput>;
+  garageFilter?: InputMaybe<GarageFilter>;
+}>;
+
+
+export type SearchGaragesQuery = { __typename?: 'Query', searchGarages: Array<{ __typename?: 'Garage', id: number, images: Array<string>, address?: { __typename?: 'Address', address: string, lat: number, lng: number } | null, availableSlots: Array<{ __typename?: 'MinimalSlotGroupBy', type: SlotType, pricePerHour: number, count: number }>, verification?: { __typename?: 'Verification', verified: boolean } | null }> };
 
 export const namedOperations = {
   Query: {
     GetAuthProvider: 'GetAuthProvider',
+    SearchGarages: 'SearchGarages'
   },
   Mutation: {
     RegisterWithCredentials: 'RegisterWithCredentials',
     Login: 'Login',
-    RegisterWithProvider: 'RegisterWithProvider',
-  },
-};
+    RegisterWithProvider: 'RegisterWithProvider'
+  }
+}
 
-export const RegisterWithCredentialsDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'RegisterWithCredentials' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'registerWithCredentialsInput' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'RegisterWithCredentialsInput' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'registerWithCredentials' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'registerWithCredentialsInput' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'registerWithCredentialsInput' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'createdAt' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'image' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'updatedAt' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  RegisterWithCredentialsMutation,
-  RegisterWithCredentialsMutationVariables
->;
-export const LoginDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'Login' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'loginInput' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'LoginInput' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'login' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'loginInput' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'loginInput' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'token' } },
-                {
-                  kind: 'Field',
-                  name: { kind: 'Name', value: 'user' },
-                  selectionSet: {
-                    kind: 'SelectionSet',
-                    selections: [
-                      { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'name' } },
-                      { kind: 'Field', name: { kind: 'Name', value: 'image' } },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
-export const GetAuthProviderDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'query',
-      name: { kind: 'Name', value: 'GetAuthProvider' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: { kind: 'Variable', name: { kind: 'Name', value: 'uid' } },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'getAuthProvider' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'uid' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'uid' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'type' } },
-                { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  GetAuthProviderQuery,
-  GetAuthProviderQueryVariables
->;
-export const RegisterWithProviderDocument = {
-  kind: 'Document',
-  definitions: [
-    {
-      kind: 'OperationDefinition',
-      operation: 'mutation',
-      name: { kind: 'Name', value: 'RegisterWithProvider' },
-      variableDefinitions: [
-        {
-          kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'registerWithProviderInput' },
-          },
-          type: {
-            kind: 'NonNullType',
-            type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'RegisterWithProviderInput' },
-            },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: 'SelectionSet',
-        selections: [
-          {
-            kind: 'Field',
-            name: { kind: 'Name', value: 'registerWithProvider' },
-            arguments: [
-              {
-                kind: 'Argument',
-                name: { kind: 'Name', value: 'registerWithProviderInput' },
-                value: {
-                  kind: 'Variable',
-                  name: { kind: 'Name', value: 'registerWithProviderInput' },
-                },
-              },
-            ],
-            selectionSet: {
-              kind: 'SelectionSet',
-              selections: [
-                { kind: 'Field', name: { kind: 'Name', value: 'uid' } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<
-  RegisterWithProviderMutation,
-  RegisterWithProviderMutationVariables
->;
+export const RegisterWithCredentialsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterWithCredentials"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registerWithCredentialsInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RegisterWithCredentialsInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerWithCredentials"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"registerWithCredentialsInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registerWithCredentialsInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"image"}},{"kind":"Field","name":{"kind":"Name","value":"updatedAt"}}]}}]}}]} as unknown as DocumentNode<RegisterWithCredentialsMutation, RegisterWithCredentialsMutationVariables>;
+export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"loginInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"loginInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"token"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uid"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"image"}}]}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const GetAuthProviderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetAuthProvider"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"uid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"getAuthProvider"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"uid"},"value":{"kind":"Variable","name":{"kind":"Name","value":"uid"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"uid"}}]}}]}}]} as unknown as DocumentNode<GetAuthProviderQuery, GetAuthProviderQueryVariables>;
+export const RegisterWithProviderDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"RegisterWithProvider"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"registerWithProviderInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"RegisterWithProviderInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"registerWithProvider"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"registerWithProviderInput"},"value":{"kind":"Variable","name":{"kind":"Name","value":"registerWithProviderInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"uid"}}]}}]}}]} as unknown as DocumentNode<RegisterWithProviderMutation, RegisterWithProviderMutationVariables>;
+export const SearchGaragesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"SearchGarages"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"dateFilter"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"DateFilterInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locationFilter"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LocationFilterInput"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"slotsFilter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"SlotWhereInput"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"garageFilter"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"GarageFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"searchGarages"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dateFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dateFilter"}}},{"kind":"Argument","name":{"kind":"Name","value":"locationFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locationFilter"}}},{"kind":"Argument","name":{"kind":"Name","value":"slotsFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slotsFilter"}}},{"kind":"Argument","name":{"kind":"Name","value":"garageFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"garageFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"address"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"address"}},{"kind":"Field","name":{"kind":"Name","value":"lat"}},{"kind":"Field","name":{"kind":"Name","value":"lng"}}]}},{"kind":"Field","name":{"kind":"Name","value":"images"}},{"kind":"Field","name":{"kind":"Name","value":"availableSlots"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"dateFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"dateFilter"}}},{"kind":"Argument","name":{"kind":"Name","value":"slotsFilter"},"value":{"kind":"Variable","name":{"kind":"Name","value":"slotsFilter"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"pricePerHour"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"verification"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"verified"}}]}}]}}]}}]} as unknown as DocumentNode<SearchGaragesQuery, SearchGaragesQueryVariables>;
