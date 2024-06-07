@@ -6,7 +6,7 @@ import { signOut, useSession } from 'next-auth/react';
 export default function Home() {
   const { data: sessionData, status } = useSession();
 
-  const {data:garages} = useQuery(SearchGaragesDocument, {
+  const { data: garages } = useQuery(SearchGaragesDocument, {
     variables: {
       dateFilter: { end: '12-06-2024', start: '12-06-2024' },
       locationFilter: {
@@ -23,11 +23,11 @@ export default function Home() {
         <>
           <Button onClick={() => signOut()}>SignOut</Button>
           {sessionData?.user?.uid}
-          <div>{garages?.searchGarages?.map((garage)=>(
-            <pre key={garage.id}>
-              {JSON.stringify(garage, null, 2)}
-            </pre>
-          ))}</div>
+          <div>
+            {garages?.searchGarages?.map((garage) => (
+              <pre key={garage.id}>{JSON.stringify(garage, null, 2)}</pre>
+            ))}
+          </div>
         </>
       ) : (
         <>guest</>

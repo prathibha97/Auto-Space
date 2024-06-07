@@ -1,9 +1,9 @@
 import { SlotType } from '@autospace/network/src/gql/generated';
-import { z } from 'zod';
 import { toLocalISOString } from '@autospace/util/date';
-import { ReactNode } from 'react';
-import { DefaultValues, useForm, FormProvider, Form } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ReactNode } from 'react';
+import { DefaultValues, FormProvider, useForm } from 'react-hook-form';
+import { z } from 'zod';
 import { isEndTimeValid, isStartTimeValid } from './util';
 
 const minMaxTuple = z.tuple([z.number(), z.number()]);

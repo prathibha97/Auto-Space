@@ -3,3 +3,7 @@ export * from './GoogleButton';
 export * from './SessionProvider';
 export * from './LogoutButton';
 export * from './UserInfo';
+export * from './IconTypes';
+export * from './FilterHeading';
+export * from './RangeSlider';
+export * from './ToggleButtonGroup';
