@@ -21,6 +21,7 @@ import { UsersModule } from './models/users/users.module';
 import { ValetAssignmentsModule } from './models/valet-assignments/valet-assignments.module';
 import { ValetsModule } from './models/valets/valets.module';
 import { VerificationsModule } from './models/verifications/verifications.module';
+import { StripeModule } from './stripe/stripe.module';
 
 // TODO: move this to util lib
 const MAX_AGE = 24 * 60 * 60 * 60;
@@ -60,6 +61,7 @@ const MAX_AGE = 24 * 60 * 60 * 60;
     BookingTimelinesModule,
     ReviewsModule,
     VerificationsModule,
+    StripeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

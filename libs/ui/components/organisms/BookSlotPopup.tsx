@@ -19,6 +19,8 @@ import { HtmlLabel } from '../atoms/HtmlLabel';
 import { CostTitleValue, DateRangeBookingInfo, toast } from '../molecules';
 import { IconTypes } from '../molecules/IconTypes';
 import { AutoImageChanger } from './AutoImageChanger';
+import { TotalPrice } from '@autospace/util/types';
+import { loadStripe } from '@stripe/stripe-js';
 
 export const BookSlotPopup = ({
   garage,
@@ -86,11 +88,11 @@ export const BookSlotPopup = ({
           try {
             setBooking(true);
             // Create booking session
-            // const res = await createBookingSession(
-            //   uid!,
-            //   totalPriceObj,
-            //   bookingData,
-            // );
+            const res = await createBookingSession(
+              uid!,
+              totalPriceObj,
+              bookingData,
+            );
           } catch (error) {
             toast('An error occurred while creating the booking session.');
           } finally {
@@ -224,35 +226,35 @@ export const BookSlotPopup = ({
   );
 };
 
-// export const createBookingSession = async (
-//   uid: string,
-//   totalPriceObj: TotalPrice,
-//   bookingData: CreateBookingInput,
-// ) => {
-//   try {
-//     const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify({
-//         totalPriceObj,
-//         uid,
-//         bookingData,
-//       }),
-//     });
-//     const checkoutSession = await response.json();
+export const createBookingSession = async (
+  uid: string,
+  totalPriceObj: TotalPrice,
+  bookingData: CreateBookingInput,
+) => {
+  try {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/stripe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        totalPriceObj,
+        uid,
+        bookingData,
+      }),
+    });
+    const checkoutSession = await response.json();
 
-//     const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
+    const publishableKey = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY;
 
-//     const stripe = await loadStripe(publishableKey || '');
-//     const result = await stripe?.redirectToCheckout({
-//       sessionId: checkoutSession.sessionId,
-//     });
+    const stripe = await loadStripe(publishableKey || '');
+    const result = await stripe?.redirectToCheckout({
+      sessionId: checkoutSession.sessionId,
+    });
 
-//     return result;
-//   } catch (error) {
-//     console.error('Error creating booking session:', error);
-//     throw error;
-//   }
-// };
+    return result;
+  } catch (error) {
+    console.error('Error creating booking session:', error);
+    throw error;
+  }
+};
