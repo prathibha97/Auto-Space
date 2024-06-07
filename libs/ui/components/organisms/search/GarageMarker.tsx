@@ -1,10 +1,12 @@
+import { FormProviderBookSlot } from '@autospace/forms/src/bookSlot';
 import { FormTypeSearchGarage } from '@autospace/forms/src/searchGarages';
 import { SearchGaragesQuery } from '@autospace/network/src/gql/generated';
 import { useKeypress } from '@autospace/util/hooks/keys';
 import { useState } from 'react';
 import { useWatch } from 'react-hook-form';
-import { ParkingIcon } from '../../atoms';
+import { Dialog, ParkingIcon } from '../../atoms';
 import { Marker } from '../map/MapMarker';
+import { BookSlotPopup } from '../BookSlotPopup';
 
 export const GarageMarker = ({
   marker,
@@ -22,7 +24,7 @@ export const GarageMarker = ({
 
   return (
     <>
-      {/* <Dialog
+      <Dialog
         title="Booking"
         widthClassName="max-w-3xl"
         open={showPopup}
@@ -31,7 +33,7 @@ export const GarageMarker = ({
         <FormProviderBookSlot defaultValues={{ endTime, startTime }}>
           <BookSlotPopup garage={marker} />
         </FormProviderBookSlot>
-      </Dialog> */}
+      </Dialog>
 
       <Marker
         latitude={marker.address.lat}
