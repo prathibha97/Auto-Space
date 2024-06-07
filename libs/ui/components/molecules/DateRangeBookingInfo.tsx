@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { IconArrowRightCircle } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 
