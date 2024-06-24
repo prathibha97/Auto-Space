@@ -1,6 +1,9 @@
 import { ApolloProvider } from '@autospace/network/src/config/apollo';
 import '@autospace/ui/app/globals.css';
-import { SessionProvider } from '@autospace/ui/components/molecules';
+import {
+  SessionProvider,
+  ToastContainer,
+} from '@autospace/ui/components/molecules';
 import { Header } from '@autospace/ui/components/organisms';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -24,6 +27,7 @@ export default function RootLayout({
           <body className={inter.className}>
             <Header menuItems={[]} />
             {children}
+            <ToastContainer />
           </body>
         </ApolloProvider>
       </SessionProvider>

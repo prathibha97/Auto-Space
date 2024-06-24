@@ -21,6 +21,7 @@ import { IconTypes } from '../molecules/IconTypes';
 import { AutoImageChanger } from './AutoImageChanger';
 import { TotalPrice } from '@autospace/util/types';
 import { loadStripe } from '@stripe/stripe-js';
+import { ManageValets } from './ManageValets';
 
 export const BookSlotPopup = ({
   garage,
@@ -197,7 +198,7 @@ export const BookSlotPopup = ({
         <HtmlLabel title="Phone number" error={errors.phoneNumber?.message}>
           <HtmlInput placeholder="+940000000000" {...register('phoneNumber')} />
         </HtmlLabel>
-        {/* <ManageValets garage={garage} /> */}
+        <ManageValets garage={garage} />
 
         {totalPriceObj ? (
           <div className="mt-4">

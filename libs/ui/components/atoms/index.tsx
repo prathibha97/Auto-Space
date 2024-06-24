@@ -10,3 +10,4 @@ export * from './FormError';
 export * from './HtmlInput';
 export * from './HtmlLabel';
 export * from './ParkingIcon';
+export * from './Switch';
