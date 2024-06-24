@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useDebounce } from '@autospace/util/hooks/async';
 import { LatLng, LngLatTuple } from '@autospace/util/types';
 import { useEffect, useMemo, useRef, useState } from 'react';

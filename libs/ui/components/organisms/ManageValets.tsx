@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { FormTypeBookSlot } from '@autospace/forms/src/bookSlot';
 import { SearchGaragesQuery } from '@autospace/network/src/gql/generated';
 import { IconUser } from '@tabler/icons-react';
