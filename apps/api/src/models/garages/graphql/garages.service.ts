@@ -62,7 +62,7 @@ export class GaragesService {
     return this.prisma.garage.delete(args);
   }
 
-  groupSlotsByType(
+  private groupSlotsByType(
     slots: CreateSlotInputWithoutGarageId[],
     garageId: number,
   ): Prisma.SlotCreateManyInput[] {

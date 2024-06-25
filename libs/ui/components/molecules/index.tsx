@@ -7,6 +7,7 @@ export * from './GoogleButton';
 export * from './IconTypes';
 export * from './Loader';
 export * from './LogoutButton';
+export * from './NoResults';
 export * from './RangeSlider';
 export * from './SessionProvider';
 export * from './Toast';

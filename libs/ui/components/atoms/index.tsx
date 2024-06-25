@@ -1,3 +1,4 @@
+export * from './Accordion';
 export * from './Badge';
 export * from './Brand';
 export * from './BrandIcon';
@@ -9,5 +10,7 @@ export * from './Form';
 export * from './FormError';
 export * from './HtmlInput';
 export * from './HtmlLabel';
+export * from './HtmlSelect';
+export * from './HtmlTextArea';
 export * from './ParkingIcon';
 export * from './Switch';
